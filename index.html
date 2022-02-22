@@ -15,7 +15,7 @@
 <body>
     <div class='container'>
         <h1>Snake Game</h1>
-        <button id="start" class="text">Start</button>
+        <button id="start" class="text btn">Start</button>
         <div class="score">
             <h2 class="text">High Score: <span id="highScore">0</span></h2>
             <h2 class="text">Current Score: <span id="currentScore">0</span></h2>
@@ -23,6 +23,14 @@
         <div class='gameBoard'>
             <div class="grid"></div>
         </div>
+
+        <div id="overlay">
+            <div id="modal" class="hidden">
+                <h2 id="modalMessage" class='text'>Better luck next time!</h2>
+                <button id="close-modal" class="text btn">Play Again</button>
+            </div>
+        </div>
+            
         
     </div>
     <script src="index.js"></script>

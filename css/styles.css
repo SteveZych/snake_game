@@ -21,14 +21,31 @@ h1{
     text-align: center;
 }
 
-#start{
-    background-color: gray;
+.btn{
     border: 2px solid black;
     border-radius: 5px;
     padding: 1em 3em;
     font-size: 1rem;
     margin-bottom: 3em;
     font-weight: 600;
+    cursor: pointer;
+}
+
+#start{
+    background-color: gray;
+}
+
+#start:hover,
+#start:focus{
+    background-color: white;
+}
+
+#close-modal{
+    background-color: white;
+}
+#close-modal:hover,
+#close-modal:focus{
+    background-color: gray;
 }
 
 .score{
@@ -62,5 +79,28 @@ h1{
 .apple {
     background-color: red;
 }
+
+#modal {
+    background-color: white;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    height: 200px;
+    position: relative;
+    top: 30%;
+  }
+
+#overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
 
 

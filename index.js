@@ -1,7 +1,10 @@
-const grid = document.querySelector('.grid')
-const startButton = document.getElementById('start')
-const currentScoreDisplay = document.getElementById('currentScore')
-const highScoreDisplay = document.getElementById('highScore')
+const grid = document.querySelector('.grid');
+const startButton = document.getElementById('start');
+const currentScoreDisplay = document.getElementById('currentScore');
+const highScoreDisplay = document.getElementById('highScore');
+const overlay = document.getElementById('overlay');
+const closeModal = document.getElementById('close-modal');
+const modalMessage = document.getElementById('modalMessage');
 
 let squares = [];
 let currentSnake = [2,1,0];
@@ -10,7 +13,7 @@ const width = 20;
 let appleIndex = 0;
 let currentScore = 0;
 let highScore = 0;
-let intervalTime = 0.0001;
+let intervalTime = 0.00001;
 let speed = 0.9;
 let timerId = 0;
 
@@ -47,14 +50,19 @@ function startGame() {
     //readd the class of snake to our new currentSnake
     currentSnake.forEach(index => squares[index].classList.add('snake'));
     timerId = setInterval(move, intervalTime);
+    //change text content to restart
+    startButton.textContent = 'Restart';
 }
 
 function endGame(){
     clearInterval(timerId);
+    startButton.textContent = 'Start';
     if (currentScore > highScore){
         highScore = currentScore;
         highScoreDisplay.textContent = highScore;
+        modalMessage.textContent = `Congratulations! Your new high score is ${highScore}`;
     }
+    overlay.style.display = 'block';   
 }
 
 function move() {
@@ -125,3 +133,8 @@ function control(e) {
 }
 document.addEventListener('keyup', control);
 startButton.addEventListener('click', startGame);
+closeModal.addEventListener('click', function(){
+    overlay.style.display = "none";
+    startGame();
+    modalMessage.textContent = 'Better luck next time!';
+})
