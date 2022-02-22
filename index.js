@@ -6,11 +6,11 @@ const highScoreDisplay = document.getElementById('highScore')
 let squares = [];
 let currentSnake = [2,1,0];
 let direction = 1;
-const width = 10;
+const width = 20;
 let appleIndex = 0;
 let currentScore = 0;
 let highScore = 0;
-let intervalTime = 1000;
+let intervalTime = 0.0001;
 let speed = 0.9;
 let timerId = 0;
 
@@ -52,7 +52,8 @@ function startGame() {
 function endGame(){
     clearInterval(timerId);
     if (currentScore > highScore){
-        
+        highScore = currentScore;
+        highScoreDisplay.textContent = highScore;
     }
 }
 
