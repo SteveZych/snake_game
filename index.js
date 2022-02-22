@@ -1,6 +1,8 @@
 const grid = document.querySelector('.grid')
 const startButton = document.getElementById('start')
-const scoreDisplay = document.getElementById('score')
+const currentScoreDisplay = document.getElementById('currentScore')
+const highScoreDisplay = document.getElementById('highScore')
+
 let squares = []
 let currentSnake = [2,1,0]
 let direction = 1
@@ -37,7 +39,7 @@ function startGame() {
     currentSnake = [2,1,0]
     score = 0
     //re add new score to browser
-    scoreDisplay.textContent = score
+    currentScoreDisplay.textContent = score
     direction = 1
     intervalTime = 1000
     generateApple()
@@ -73,30 +75,23 @@ function move() {
         console.log(tail)
         //grow our snake array
         currentSnake.push(tail)
-        console.log(currentSnake)
+        
         //generate new apple
         generateApple()
         //add one to the score
         score++
         //display our score
-        scoreDisplay.textContent = score
+        currentScoreDisplay.textContent = score
         //speed up our snake
         clearInterval(timerId)
-        console.log(intervalTime)
+        
         intervalTime = intervalTime * speed
-        console.log(intervalTime)
+        
         timerId = setInterval(move, intervalTime)
     }
-    
-    
-    
+
     squares[currentSnake[0]].classList.add('snake')
 }
-
-
-
-
-
 
 function generateApple() {
     do {
@@ -106,23 +101,14 @@ function generateApple() {
 } 
 generateApple()
 
-// 39 is right arrow
-// 38 is for the up arrow
-// 37 is for the left arrow
-// 40 is for the down arrow
-
 function control(e) {
     if (e.keyCode === 39) {
-        console.log('right pressed')
         direction = 1
     } else if (e.keyCode === 38) {
-        console.log('up pressed')
         direction = -width
     } else if (e.keyCode === 37) {
-        console.log('left pressed')
         direction = -1
     } else if (e.keyCode === 40) {
-        console.log('down pressed')
         direction = +width
     }
 }
