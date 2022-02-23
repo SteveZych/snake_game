@@ -1,13 +1,19 @@
-html, body {
+body {
     margin: 0;
     padding: 10;
     font-family: 'Orbitron', sans-serif;
-    background-color: gray;
+    background-color: white;
+}
+
+.dark-mode{
+    background-color: rgba(58, 57, 57, 0.8);
+    color: rgba(222, 216, 219, 0.8);
 }
 
 h1{
     font-size: 5rem;
     font-family: 'Press Start 2P', cursive;
+    margin-top: 0;
 }
 
 .text{
@@ -23,6 +29,7 @@ h1{
 
 .btn{
     border: 2px solid black;
+    background-color: white;
     border-radius: 5px;
     padding: 1em 3em;
     font-size: 1rem;
@@ -31,22 +38,27 @@ h1{
     cursor: pointer;
 }
 
-#start{
-    background-color: gray;
+.btn:hover{
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 20px 1px grey;
 }
 
-#start:hover,
-#start:focus{
-    background-color: white;
+.btn-dark{
+    color: white;
+    background-color: black;
 }
 
-#close-modal{
-    background-color: white;
+.btn-dark:hover{
+    box-shadow: 0 0 20px 1px white;
 }
-#close-modal:hover,
-#close-modal:focus{
+
+/* .close-modal:hover,
+.close-modal:focus{
     background-color: gray;
-}
+    color: white;
+    border: none;
+} */
 
 .score{
     display: flex;
@@ -80,7 +92,7 @@ h1{
     background-color: red;
 }
 
-#modal {
+.modal {
     background-color: white;
     max-width: 600px;
     margin: 0 auto;
@@ -90,7 +102,12 @@ h1{
     top: 30%;
   }
 
-#overlay {
+.modal-dark{
+    background-color: rgb(159, 157, 157);
+    color: black;
+}
+
+.overlay {
     display: none;
     width: 100%;
     height: 100%;
@@ -101,6 +118,17 @@ h1{
     right: 0;
     background-color: rgba(0, 0, 0, 0.3);
   }
+
+  .material-icons-outlined, .material-icons{
+      font-size: 2rem;
+      cursor: pointer;
+  }
+
+  .hidden{
+      display: none;
+  }
+
+
 
 
 

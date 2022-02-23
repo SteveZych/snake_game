@@ -1,10 +1,10 @@
 const grid = document.querySelector('.grid');
-const startButton = document.getElementById('start');
+const startButton = document.getElementsByClassName('start');
 const currentScoreDisplay = document.getElementById('currentScore');
 const highScoreDisplay = document.getElementById('highScore');
-const overlay = document.getElementById('overlay');
-const closeModal = document.getElementById('close-modal');
-const modalMessage = document.getElementById('modalMessage');
+const overlay = document.getElementsByClassName('overlay');
+const closeModal = document.getElementsByClassName('close-modal');
+const modalMessage = document.getElementsByClassName('modalMessage');
 
 let squares = [];
 let currentSnake = [2,1,0];
@@ -12,8 +12,8 @@ let direction = 1;
 const width = 20;
 let appleIndex = 0;
 let currentScore = 0;
-let highScore = 0;
-let intervalTime = 0.00001;
+let highScore = window.localStorage.highScore || 0;
+let intervalTime = 1;
 let speed = 0.9;
 let timerId = 0;
 
@@ -31,6 +31,9 @@ function createGrid() {
     }
 }
 createGrid();
+
+//initalize high score
+highScoreDisplay.textContent = highScore;
 
 currentSnake.forEach(index => squares[index].classList.add('snake'));
 
@@ -51,19 +54,22 @@ function startGame() {
     currentSnake.forEach(index => squares[index].classList.add('snake'));
     timerId = setInterval(move, intervalTime);
     //change text content to restart
-    startButton.textContent = 'Restart';
+    startButton[0].textContent = 'Restart';
+    
 }
 
 function endGame(){
     clearInterval(timerId);
-    startButton.textContent = 'Start';
+    startButton[0].textContent = 'Start';
     if (currentScore > highScore){
         highScore = currentScore;
         highScoreDisplay.textContent = highScore;
-        modalMessage.textContent = `Congratulations! Your new high score is ${highScore}`;
+        modalMessage[0].textContent = `Congratulations! Your new high score is ${highScore}`;
+        localStorage.setItem('highScore', JSON.stringify(highScore));
     }
-    overlay.style.display = 'block';   
+    overlay[0].style.display = 'block';   
 }
+
 
 function move() {
     if (
@@ -132,9 +138,27 @@ function control(e) {
     }
 }
 document.addEventListener('keyup', control);
-startButton.addEventListener('click', startGame);
-closeModal.addEventListener('click', function(){
-    overlay.style.display = "none";
+startButton[0].addEventListener('click', startGame);
+closeModal[0].addEventListener('click', function(){
+    overlay[0].style.display = "none";
     startGame();
-    modalMessage.textContent = 'Better luck next time!';
+    modalMessage[0].textContent = 'Better luck next time!';
 })
+
+function darkMode(){
+    document.body.classList.add('dark-mode');
+    document.getElementsByClassName('modal')[0].classList.add('modal-dark');
+    let buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => button.classList.add('btn-dark'));
+    document.getElementsByClassName('moon')[0].classList.add('hidden');
+    document.getElementsByClassName('sun')[0].classList.remove('hidden');
+}
+
+function lightMode(){
+    document.body.classList.remove('dark-mode');
+    document.getElementsByClassName('modal')[0].classList.remove('modal-dark');
+    let buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => button.classList.remove('btn-dark'));
+    document.getElementsByClassName('moon')[0].classList.remove('hidden');
+    document.getElementsByClassName('sun')[0].classList.add('hidden');
+}

@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -13,9 +18,17 @@
     <title>Steven's Snake Game</title>
 </head>
 <body>
+    <span onclick="darkMode()" class="material-icons-outlined moon">
+        dark_mode
+        </span>
+    <span onclick="lightMode()" class="material-icons hidden sun">
+        light_mode
+        </span>
+   
+    
     <div class='container'>
         <h1>Snake Game</h1>
-        <button id="start" class="text btn">Start</button>
+        <button class="text btn start">Start</button>
         <div class="score">
             <h2 class="text">High Score: <span id="highScore">0</span></h2>
             <h2 class="text">Current Score: <span id="currentScore">0</span></h2>
@@ -24,10 +37,10 @@
             <div class="grid"></div>
         </div>
 
-        <div id="overlay">
-            <div id="modal" class="hidden">
-                <h2 id="modalMessage" class='text'>Better luck next time!</h2>
-                <button id="close-modal" class="text btn">Play Again</button>
+        <div class="overlay">
+            <div class="modal">
+                <h2 class='text modalMessage'>Better luck next time!</h2>
+                <button class="text btn close-modal">Play Again</button>
             </div>
         </div>
             
